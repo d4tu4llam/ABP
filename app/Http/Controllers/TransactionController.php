@@ -37,7 +37,7 @@ class TransactionController extends Controller
             'customer_id' => 'required|exists:customers,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|numeric|min:1',
-            'transaction_date' => 'required|date',
+            'transaction_date' => 'required|date|after_or_equal:today',
         ]);
         $request->merge([
             'total_price' => Product::find($request->product_id)->price * $request->quantity,
@@ -71,7 +71,7 @@ class TransactionController extends Controller
             'customer_id' => 'required|exists:customers,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|numeric|min:1',
-            'transaction_date' => 'required|date',
+            'transaction_date' => 'required|date|after_or_equal:today',
         ]);
         $request->merge([
             'total_price' => Product::find($request->product_id)->price * $request->quantity,
